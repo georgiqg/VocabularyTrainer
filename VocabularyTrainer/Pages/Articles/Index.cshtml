@@ -1,0 +1,54 @@
+﻿@page
+@model VocabularyTrainer.Pages.Articles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].DefiniteArticle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].IndefiniteArticle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Gender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefiniteArticle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndefiniteArticle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.LanguageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ArticleId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ArticleId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ArticleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

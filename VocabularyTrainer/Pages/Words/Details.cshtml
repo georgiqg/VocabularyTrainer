@@ -1,0 +1,37 @@
+﻿@page
+@model VocabularyTrainer.Pages.Words.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Word</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Word.ArticleId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Word.ArticleId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Word.Singular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Word.Singular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Word.Plural)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Word.Plural)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Word.WordId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,45 @@
+﻿@page
+@model VocabularyTrainer.Pages.Words.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Word</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Word.WordId" />
+            <div class="form-group">
+                <label asp-for="Word.ArticleId" class="control-label"></label>
+                <input asp-for="Word.ArticleId" class="form-control" />
+                <span asp-validation-for="Word.ArticleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Word.Singular" class="control-label"></label>
+                <input asp-for="Word.Singular" class="form-control" />
+                <span asp-validation-for="Word.Singular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Word.Plural" class="control-label"></label>
+                <input asp-for="Word.Plural" class="form-control" />
+                <span asp-validation-for="Word.Plural" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

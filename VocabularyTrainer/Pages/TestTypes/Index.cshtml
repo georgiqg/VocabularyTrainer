@@ -1,0 +1,36 @@
+﻿@page
+@model VocabularyTrainer.Pages.TestTypes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestType[0].TestTypeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TestType) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestTypeName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.TestTypeId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.TestTypeId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.TestTypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
