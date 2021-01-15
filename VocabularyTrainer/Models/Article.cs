@@ -6,17 +6,16 @@ namespace VocabularyTrainer.Models
     {
         public int ArticleId { get; set; }
 
+        [Required]
         [StringLength(10)]
-        [Display(Name = "Definte article")]
-        public string DefiniteArticle { get; set; }
+        [Display(Name = "Article")]
+        public string ArticleName { get; set; }
 
-        [StringLength(10)]
-        [Display(Name = "Indefinte article")]
-        public string IndefiniteArticle { get; set; }
-
+        [Required]
         public int LanguageId { get; set; }
         public Language Language { get; set; }
 
+        [Required]
         public int GenderId { get; set; }
         public Gender Gender { get; set; }
     }

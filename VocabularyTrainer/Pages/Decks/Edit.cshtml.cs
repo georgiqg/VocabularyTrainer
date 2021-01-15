@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,9 +11,9 @@ namespace VocabularyTrainer.Pages.Decks
 {
     public class EditModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly VocabularyTrainerContext _context;
 
-        public EditModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public EditModel(VocabularyTrainerContext context)
         {
             _context = context;
         }
@@ -37,7 +35,7 @@ namespace VocabularyTrainer.Pages.Decks
             {
                 return NotFound();
             }
-           ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "LanguageId");
+            ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "LanguageName").OrderBy(l => l.Text);
             return Page();
         }
 

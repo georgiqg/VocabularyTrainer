@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace VocabularyTrainer.Models
 {
@@ -10,6 +11,7 @@ namespace VocabularyTrainer.Models
         public int TestTypeId { get; set; }
 
         [Required]
+        [DisplayName("Test Type Name")]
         public string TestTypeName { get; set; }
     }
 }

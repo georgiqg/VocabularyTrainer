@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VocabularyTrainer.Data;
 
 namespace VocabularyTrainer.Migrations
 {
     [DbContext(typeof(VocabularyTrainerContext))]
-    partial class VocabularyTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20210115225111_RequiredFields_OneArticle")]
+    partial class RequiredFields_OneArticle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,6 @@ namespace VocabularyTrainer.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("ArticleName")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -119,6 +120,11 @@ namespace VocabularyTrainer.Migrations
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<string>("LanguageTestName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("TestTypeId")
                         .HasColumnType("int");

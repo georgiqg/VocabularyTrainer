@@ -17,32 +17,27 @@
                 @Html.DisplayNameFor(model => model.LanguageTest[0].TestType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LanguageTest[0].LanguageTestName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.LanguageTest[0].Language)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.LanguageTest) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TestType.TestTypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LanguageTestName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language.LanguageId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.LanguageTestId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.LanguageTestId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.LanguageTestId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.LanguageTest)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestType.TestTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language.LanguageId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.LanguageTestId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.LanguageTestId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.LanguageTestId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

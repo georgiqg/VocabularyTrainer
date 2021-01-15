@@ -38,8 +38,8 @@ namespace VocabularyTrainer.Pages.LanguageTests
             {
                 return NotFound();
             }
-           ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "LanguageId");
-           ViewData["TestTypeId"] = new SelectList(_context.TestType, "TestTypeId", "TestTypeId");
+            ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "LanguageName").OrderBy(l => l.Text);
+            ViewData["TestTypeId"] = new SelectList(_context.TestType, "TestTypeId", "TestTypeName");
             return Page();
         }
 
