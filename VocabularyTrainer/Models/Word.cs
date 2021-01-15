@@ -6,12 +6,14 @@ namespace VocabularyTrainer.Models
     {
         public int WordId { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Singular { get; set; }
 
         [StringLength(50)]
         public string Plural { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Meaning { get; set; }
 

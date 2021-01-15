@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +12,22 @@ namespace VocabularyTrainer.Pages.Genders
 {
     public class EditModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly VocabularyTrainerContext _context;
+        private readonly IHtmlHelper htmlHelper;
+        public List<SelectListItem> colors;
 
-        public EditModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public EditModel(VocabularyTrainerContext context, IHtmlHelper htmlHelper)
         {
             _context = context;
+
+            this.htmlHelper = htmlHelper;
+            colors = htmlHelper.GetEnumSelectList<GenderColor>()
+                .Select(gc => new SelectListItem
+                {
+                    Value = gc.Text,
+                    Text = gc.Text
+                })
+                .ToList();
         }
 
         [BindProperty]

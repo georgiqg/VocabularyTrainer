@@ -9,6 +9,7 @@ namespace VocabularyTrainer.Models
         public int TestTypeId { get; set; }
         public TestType TestType { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string LanguageTestName { get; private set; }
 

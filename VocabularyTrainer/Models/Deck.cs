@@ -7,6 +7,7 @@ namespace VocabularyTrainer.Models
     {
         public int DeckId { get; set; }
 
+        [Required]
         [StringLength(50)]
         [Display(Name = "Deck name")]
         public string DeckName { get; set; }

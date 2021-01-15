@@ -69,3 +69,30 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.flag-big {
+    height: 72px;
+    width: 120px;
+    border: 1px solid black;
+}
+.flag-medium {
+    height: 28px;
+    width: 46px;
+    border: 1px solid black;
+}
+
+.sample {
+    display: inline-block;
+    margin: 6px 18px;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: thin solid black;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px 12px;
+}

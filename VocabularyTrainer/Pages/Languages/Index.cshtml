@@ -30,7 +30,7 @@
                     @Html.DisplayFor(modelItem => item.LanguageName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FlagUrl)
+                    <img class="flag-medium" src="@Url.Content(item.FlagUrl)" alt="Alternate Text" />
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.LanguageId">Edit</a> |

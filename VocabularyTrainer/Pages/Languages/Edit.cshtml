@@ -21,7 +21,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Language.FlagUrl" class="control-label"></label>
-                <input asp-for="Language.FlagUrl" class="form-control" />
+                <select asp-for="Language.FlagUrl" class="form-control" asp-items="Model.flags">
+                    <option value="">-Select-</option>
+                </select>
                 <span asp-validation-for="Language.FlagUrl" class="text-danger"></span>
             </div>
             <div class="form-group">

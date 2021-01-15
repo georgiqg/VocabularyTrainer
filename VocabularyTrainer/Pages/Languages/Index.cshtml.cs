@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace VocabularyTrainer.Pages.Languages
 
         public async Task OnGetAsync()
         {
-            Language = await _context.Language.ToListAsync();
+            Language = await _context.Language.OrderBy(l => l.LanguageName).ToListAsync();
         }
     }
 }

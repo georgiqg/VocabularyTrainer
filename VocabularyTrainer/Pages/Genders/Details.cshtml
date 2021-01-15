@@ -21,6 +21,7 @@
             @Html.DisplayNameFor(model => model.Gender.GenderColor)
         </dt>
         <dd class="col-sm-10">
+            <div class="circle flex-column" style="background-color:@Model.Gender.GenderColor"></div>
             @Html.DisplayFor(model => model.Gender.GenderColor)
         </dd>
     </dl>

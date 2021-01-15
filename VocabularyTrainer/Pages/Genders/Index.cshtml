@@ -23,20 +23,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Gender) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenderName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenderColor)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.GenderId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.GenderId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.GenderId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Gender)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenderName)
+                </td>
+                <td>
+                    <div class="circle flex-column" style="background-color:@item.GenderColor"></div>
+                    @Html.DisplayFor(modelItem => item.GenderColor)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.GenderId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.GenderId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.GenderId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

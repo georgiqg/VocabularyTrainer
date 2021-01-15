@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +13,22 @@ namespace VocabularyTrainer.Pages.Languages
 {
     public class EditModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly VocabularyTrainerContext _context;
 
-        public EditModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public List<SelectListItem> flags;
+
+        public EditModel(VocabularyTrainerContext context)
         {
             _context = context;
+
+            // Get the list of files inside the wwwroot/images/flags directory:
+            flags = Directory.GetFiles(@"wwwroot/images/flags", "*.jpg")
+                .Select(f => new SelectListItem
+                {
+                    Value = f.Replace(@"\", "/").Replace("wwwroot", "~"),
+                    Text = Path.GetFileNameWithoutExtension(f).Replace('_', ' ')
+                })
+                .ToList();
         }
 
         [BindProperty]
