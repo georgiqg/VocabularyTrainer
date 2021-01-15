@@ -10,7 +10,7 @@ namespace VocabularyTrainer.Models
 
         [Required]
         [StringLength(50)]
-        [DisplayName("Language Name")]
+        [DisplayName("Language")]
         public string LanguageName { get; set; }
 
         // Flags downloaded from https://www.sciencekids.co.nz/pictures/flags.html

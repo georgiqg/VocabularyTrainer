@@ -16,9 +16,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Language[0].LanguageName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language[0].FlagUrl)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -27,10 +24,8 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LanguageName)
-                </td>
-                <td>
                     <img class="flag-medium" src="@Url.Content(item.FlagUrl)" alt="Alternate Text" />
+                    @Html.DisplayFor(modelItem => item.LanguageName)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.LanguageId">Edit</a> |

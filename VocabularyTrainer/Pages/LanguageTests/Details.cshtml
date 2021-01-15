@@ -12,16 +12,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LanguageTest.TestType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LanguageTest.TestType.TestTypeId)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LanguageTest.Language)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LanguageTest.Language.LanguageId)
+            @Html.DisplayFor(model => model.LanguageTest.Language.LanguageName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LanguageTest.TestType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LanguageTest.TestType.TestTypeName)
         </dd>
     </dl>
 </div>

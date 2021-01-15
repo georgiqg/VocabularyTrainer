@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LanguageTest[0].TestType)
+                @Html.DisplayNameFor(model => model.LanguageTest[0].Language)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LanguageTest[0].Language)
+                @Html.DisplayNameFor(model => model.LanguageTest[0].TestType)
             </th>
             <th></th>
         </tr>
@@ -27,10 +27,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TestType.TestTypeId)
+                    @Html.DisplayFor(modelItem => item.Language.LanguageName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Language.LanguageId)
+                    @Html.DisplayFor(modelItem => item.TestType.TestTypeName)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.LanguageTestId">Edit</a> |
