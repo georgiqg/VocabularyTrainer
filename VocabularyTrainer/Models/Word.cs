@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VocabularyTrainer.Models
 {
@@ -21,7 +22,8 @@ namespace VocabularyTrainer.Models
         [StringLength(50)]
         public string Meaning { get; set; }
 
-        public int ArticleId { get; set; }
+        [ForeignKey("GenderId")]
+        public int? ArticleId { get; set; }
         public Article Article { get; set; }
     }
 }

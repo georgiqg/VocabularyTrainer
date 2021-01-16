@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VocabularyTrainer.Data;
 
 namespace VocabularyTrainer.Migrations
 {
     [DbContext(typeof(VocabularyTrainerContext))]
-    partial class VocabularyTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20210116102510_WordArticalNotMandatory")]
+    partial class WordArticalNotMandatory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace VocabularyTrainer.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("GenderId")
+                    b.Property<int?>("GenderId")
                         .HasColumnType("int");
 
                     b.Property<int>("LanguageId")
@@ -182,7 +184,7 @@ namespace VocabularyTrainer.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("ArticleId")
+                    b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeckId")
@@ -215,9 +217,7 @@ namespace VocabularyTrainer.Migrations
                 {
                     b.HasOne("VocabularyTrainer.Models.Gender", "Gender")
                         .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
 
                     b.HasOne("VocabularyTrainer.Models.Language", "Language")
                         .WithMany("Articles")
@@ -275,7 +275,9 @@ namespace VocabularyTrainer.Migrations
                 {
                     b.HasOne("VocabularyTrainer.Models.Article", "Article")
                         .WithMany()
-                        .HasForeignKey("ArticleId");
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VocabularyTrainer.Models.Deck", "Deck")
                         .WithMany("Words")
