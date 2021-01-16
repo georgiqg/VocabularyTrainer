@@ -12,9 +12,9 @@ namespace VocabularyTrainer.Pages.Words
 {
     public class DeleteModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly VocabularyTrainerContext _context;
 
-        public DeleteModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public DeleteModel(VocabularyTrainerContext context)
         {
             _context = context;
         }
@@ -29,7 +29,9 @@ namespace VocabularyTrainer.Pages.Words
                 return NotFound();
             }
 
-            Word = await _context.Word.FirstOrDefaultAsync(m => m.WordId == id);
+            Word = await _context.Word
+                .Include(w => w.Article)
+                .Include(w => w.Deck).FirstOrDefaultAsync(m => m.WordId == id);
 
             if (Word == null)
             {

@@ -13,10 +13,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Word.ArticleId)
+            @Html.DisplayNameFor(model => model.Word.Deck)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Word.ArticleId)
+            @Html.DisplayFor(model => model.Word.Deck.DeckName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Word.Singular)
@@ -30,8 +30,20 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Word.Plural)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Word.Meaning)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Word.Meaning)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Word.Article)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Word.Article.ArticleName)
+        </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Word.WordId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

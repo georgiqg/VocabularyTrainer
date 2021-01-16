@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using VocabularyTrainer.Data;
 using VocabularyTrainer.Models;
 
 namespace VocabularyTrainer.Pages.Words
 {
     public class EditModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly Data.VocabularyTrainerContext _context;
 
-        public EditModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public EditModel(Data.VocabularyTrainerContext context)
         {
             _context = context;
         }
@@ -30,12 +27,16 @@ namespace VocabularyTrainer.Pages.Words
                 return NotFound();
             }
 
-            Word = await _context.Word.FirstOrDefaultAsync(m => m.WordId == id);
+            Word = await _context.Word
+                .Include(w => w.Article)
+                .Include(w => w.Deck).FirstOrDefaultAsync(m => m.WordId == id);
 
             if (Word == null)
             {
                 return NotFound();
             }
+            ViewData["ArticleId"] = new SelectList(_context.Article, "ArticleId", "ArticleName");
+            ViewData["DeckId"] = new SelectList(_context.Deck, "DeckId", "DeckName");
             return Page();
         }
 

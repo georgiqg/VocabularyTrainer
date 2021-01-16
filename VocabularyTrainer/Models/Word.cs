@@ -7,6 +7,10 @@ namespace VocabularyTrainer.Models
         public int WordId { get; set; }
 
         [Required]
+        public int DeckId { get; set; }
+        public Deck Deck { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string Singular { get; set; }
 
@@ -19,8 +23,5 @@ namespace VocabularyTrainer.Models
 
         public int ArticleId { get; set; }
         public Article Article { get; set; }
-
-        public int DeckId { get; set; }
-        public Deck Deck { get; set; }
     }
 }

@@ -20,7 +20,9 @@ namespace VocabularyTrainer.Pages.Words
 
         public async Task OnGetAsync()
         {
-            Word = await _context.Word.ToListAsync();
+            Word = await _context.Word
+                .Include(w => w.Article)
+                .Include(w => w.Deck).ToListAsync();
         }
     }
 }

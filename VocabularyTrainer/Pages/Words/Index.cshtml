@@ -14,13 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Word[0].ArticleId)
+                @Html.DisplayNameFor(model => model.Word[0].Deck)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Word[0].Singular)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Word[0].Plural)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Word[0].Meaning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Word[0].Article)
             </th>
             <th></th>
         </tr>
@@ -30,13 +36,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArticleId)
+                    @Html.DisplayFor(modelItem => item.Deck.DeckName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Singular)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Plural)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meaning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Article.ArticleName)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.WordId">Edit</a> |

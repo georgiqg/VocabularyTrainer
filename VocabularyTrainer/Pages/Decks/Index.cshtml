@@ -14,29 +14,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Deck[0].DeckName)
+                @Html.DisplayNameFor(model => model.Deck[0].Language)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Deck[0].Language)
+                @Html.DisplayNameFor(model => model.Deck[0].DeckName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Deck) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeckName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language.LanguageId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.DeckId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.DeckId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.DeckId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Deck)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language.LanguageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeckName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.DeckId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.DeckId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.DeckId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

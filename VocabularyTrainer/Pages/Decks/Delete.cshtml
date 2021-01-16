@@ -13,16 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deck.Language)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deck.Language.LanguageName)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Deck.DeckName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Deck.DeckName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Deck.Language)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Deck.Language.LanguageId)
         </dd>
     </dl>
     

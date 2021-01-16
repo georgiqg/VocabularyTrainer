@@ -14,9 +14,8 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Word.ArticleId" class="control-label"></label>
-                <input asp-for="Word.ArticleId" class="form-control" />
-                <span asp-validation-for="Word.ArticleId" class="text-danger"></span>
+                <label asp-for="Word.DeckId" class="control-label"></label>
+                <select asp-for="Word.DeckId" class="form-control" asp-items="ViewBag.DeckId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Word.Singular" class="control-label"></label>
@@ -27,6 +26,15 @@
                 <label asp-for="Word.Plural" class="control-label"></label>
                 <input asp-for="Word.Plural" class="form-control" />
                 <span asp-validation-for="Word.Plural" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Word.Meaning" class="control-label"></label>
+                <input asp-for="Word.Meaning" class="form-control" />
+                <span asp-validation-for="Word.Meaning" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Word.ArticleId" class="control-label"></label>
+                <select asp-for="Word.ArticleId" class="form-control" asp-items="ViewBag.ArticleId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

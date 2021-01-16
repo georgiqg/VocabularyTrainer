@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VocabularyTrainer.Data;
 using VocabularyTrainer.Models;
 
 namespace VocabularyTrainer.Pages.Words
 {
     public class CreateModel : PageModel
     {
-        private readonly VocabularyTrainer.Data.VocabularyTrainerContext _context;
+        private readonly Data.VocabularyTrainerContext _context;
 
-        public CreateModel(VocabularyTrainer.Data.VocabularyTrainerContext context)
+        public CreateModel(Data.VocabularyTrainerContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            ViewData["ArticleId"] = new SelectList(_context.Article, "ArticleId", "ArticleName");
+            ViewData["DeckId"] = new SelectList(_context.Deck, "DeckId", "DeckName");
             return Page();
         }
 
