@@ -29,9 +29,8 @@ namespace VocabularyTrainer.Pages.Words
 
         public IActionResult OnGet()
         {
-            ViewData["ArticleId"] = new SelectList(_context.Article, "ArticleId", "ArticleName");
+            //ViewData["ArticleId"] = new SelectList(_context.Article, "ArticleId", "ArticleName");
             ViewData["DeckId"] = new SelectList(_context.Deck, "DeckId", "DeckName");
-
 
             return Page();
         }

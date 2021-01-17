@@ -24,24 +24,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Word.Singular" class="control-label"></label>
-                <input asp-for="Word.Singular" class="form-control" />
+                <input asp-for="Word.Singular" class="form-control" autocomplete="off" />
                 <span asp-validation-for="Word.Singular" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Word.Plural" class="control-label"></label>
-                <input asp-for="Word.Plural" class="form-control" />
+                <input asp-for="Word.Plural" class="form-control" autocomplete="off" />
                 <span asp-validation-for="Word.Plural" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Word.Meaning" class="control-label"></label>
-                <input asp-for="Word.Meaning" class="form-control" />
+                <input asp-for="Word.Meaning" class="form-control" autocomplete="off" />
                 <span asp-validation-for="Word.Meaning" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Word.ArticleId" class="control-label"></label>
-                <select asp-for="Word.ArticleId" class="form-control" asp-items="ViewBag.ArticleId">
-                    <option value="">-Not a noun-</option>
-                </select>
+                <select asp-for="Word.ArticleId" class="form-control" asp-items="ViewBag.ArticleId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

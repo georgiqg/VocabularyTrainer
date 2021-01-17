@@ -35,7 +35,7 @@ namespace VocabularyTrainer.Pages.Words
             {
                 return NotFound();
             }
-            ViewData["ArticleId"] = new SelectList(_context.Article, "ArticleId", "ArticleName");
+            
             ViewData["DeckId"] = new SelectList(_context.Deck, "DeckId", "DeckName");
             return Page();
         }

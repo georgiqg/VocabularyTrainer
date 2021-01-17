@@ -1,16 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VocabularyTrainer.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace VocabularyTrainer.Api
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -21,7 +18,7 @@ namespace VocabularyTrainer.Api
             _context = context;
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/values/GetArticlesByDeckId/5
         [HttpGet("{deckId}")]
         public SelectList GetArticlesByDeckId(int deckId)
         {
