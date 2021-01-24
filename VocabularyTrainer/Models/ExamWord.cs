@@ -2,6 +2,7 @@
 {
     public class ExamWord
     {
+        public int ExamWordId { get; set; }
         public string Singular { get; set; }
         public string Plural { get; set; }
         public string Article { get; set; }

@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VocabularyTrainer.Data;
 using VocabularyTrainer.Models;
 
@@ -25,19 +23,23 @@ namespace VocabularyTrainer.Api
         public IEnumerable<ExamWord> GetVocabularyExam(string deckIds)
         {
             var decks = deckIds.Split('|');
+
+            // Use a random value for the ID in order to return the list in random order
+            var random = new Random();
+
             var words = _context.Word
                 .Where(w => decks.Contains(w.DeckId.ToString()))
                 .Select(w => new ExamWord
                 {
+                    ExamWordId = random.Next(ushort.MinValue, ushort.MaxValue), // 0 to 65,535
                     Singular = w.Singular,
                     Plural = w.Plural,
                     Article = w.Article.ArticleName,
                     Meaning = w.Meaning,
                     CorrectAnswer = false
-                })
-                .ToList();
+                });
 
-            return words;
+            return words.OrderBy(w => w.ExamWordId).ToList();
         }
     }
 }

@@ -1,0 +1,36 @@
+﻿@page
+@model VocabularyTrainer.Pages.Exams.IndexModel
+@{
+}
+
+<h1>Exams</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/" method="post">
+            <div class="form-group">
+                <label asp-for="Language.LanguageId" class="control-label">Language</label>
+                <select asp-for="Language.LanguageId" class="form-control" asp-items="ViewBag.Language">
+                    <option value="">-Select-</option>
+                </select>
+                <span asp-validation-for="Language.LanguageId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Deck.DeckId" class="control-label">Deck</label>
+                <select asp-for="Deck.DeckId" class="form-control" asp-items="ViewBag.Deck">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Deck.DeckId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

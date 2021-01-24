@@ -4,43 +4,48 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
-    updateArticleDropdown($("#selected-article").val());
-
     $('#Word_DeckId').change(function () {
-        updateArticleDropdown("");
+        updateDropdownList(this.id, "Word_ArticleId", "values", "GetArticlesByDeckId", "-not a noun-");
+    });
+
+    $('#Language_LanguageId').change(function () {
+        updateDropdownList(this.id, "Deck_DeckId", "values", "GetDecksByLanguageId", "-Select-");
     });
 
     // Setting the article for the Edit page (otherwise the value won't exist)
-    if ($("#selected-article").val() != undefined && $("#selected-article").val() != "") {
-        $("#Word_ArticleId").val($("#selected-article").val());
+    if (document.getElementById("Word_DeckId")) {
+        if ($("#Word_DeckId").val() != undefined && $("#Word_DeckId").val() != "") {
+            // load the items in the Article dropdown:
+            updateDropdownList("Word_DeckId", "Word_ArticleId", "values", "GetArticlesByDeckId", "-not a noun-");
+        }
     }
 
-    function updateArticleDropdown(selectValue) {
-        var selectedDeck = $("#Word_DeckId").val();
-        var articlesSelect = $('#Word_ArticleId');
-        articlesSelect.empty();
-        if (selectedDeck != null && selectedDeck != "") {
+    function updateDropdownList(primaryDropdown, secondaryDropdown, controllerName, methodName, textForEmptyValue) {
+        var selectedId = $("#" + primaryDropdown).val();
+        var secondarySelect = $("#" + secondaryDropdown);
+        secondarySelect.empty();
+        if (selectedId != null && selectedId != "") {
             $.ajax({
-                url: "../api/values/GetArticlesByDeckId/" + selectedDeck,
+                url: "../api/" + controllerName + "/" + methodName + "/" + selectedId,
                 type: "get", //send it through get method
                 success: function (response) {
                     console.log("success");
 
                     if (response != null && !jQuery.isEmptyObject(response)) {
-                        articlesSelect.append($('<option/>', {
-                            value: null,
-                            text: "-not a noun-"
+                        secondarySelect.append($('<option/>', {
+                            value: "",
+                            text: textForEmptyValue
                         }));
-                        $.each(response, function (index, article) {
-                            articlesSelect.append($('<option/>', {
-                                value: article.value,
-                                text: article.text
+                        $.each(response, function (index, item) {
+                            secondarySelect.append($('<option/>', {
+                                value: item.value,
+                                text: item.text
                             }));
                         });
 
                         // For the Edit page, to select the correct value
-                        if (selectValue != undefined && selectValue != "") {
-                            $("#Word_ArticleId").val(selectValue);
+                        if (document.getElementById("selected-value")) {
+                            $("#" + secondaryDropdown).val($("#selected-value").val());
                         }
                     };
                 },
