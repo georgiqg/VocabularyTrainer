@@ -10,6 +10,7 @@ $(document).ready(function () {
 
     $('#Language_LanguageId').change(function () {
         updateDropdownList(this.id, "Deck_DeckId", "values", "GetDecksByLanguageId", "-Select-");
+        updateDropdownList(this.id, "LanguageTest_LanguageTestId", "values", "GetTestTypesByLanguageId", "-Select-");
     });
 
     // Setting the article for the Edit page (otherwise the value won't exist)
@@ -17,6 +18,22 @@ $(document).ready(function () {
         if ($("#Word_DeckId").val() != undefined && $("#Word_DeckId").val() != "") {
             // load the items in the Article dropdown:
             updateDropdownList("Word_DeckId", "Word_ArticleId", "values", "GetArticlesByDeckId", "-not a noun-");
+        }
+    }
+
+    // Setting the deck in case of refreshing the Exam page and if the Language is selected
+    if (document.getElementById("Language_LanguageId") && document.getElementById("LanguageTest_LanguageTestId")) {
+        if ($("#Language_LanguageId").val() != undefined && $("#Language_LanguageId").val() != "") {
+            // load the items in the Article dropdown:
+            updateDropdownList("Language_LanguageId", "LanguageTest_LanguageTestId", "values", "GetTestTypesByLanguageId", "-Select-");
+        }
+    }
+
+    // Setting the deck in case of refreshing the Exam page and if the Language is selected
+    if (document.getElementById("Language_LanguageId") && document.getElementById("Deck_DeckId")) {
+        if ($("#Language_LanguageId").val() != undefined && $("#Language_LanguageId").val() != "") {
+            // load the items in the Article dropdown:
+            updateDropdownList("Language_LanguageId", "Deck_DeckId", "values", "GetDecksByLanguageId", "-Select-");
         }
     }
 

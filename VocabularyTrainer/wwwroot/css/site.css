@@ -97,3 +97,16 @@ body {
     vertical-align: middle;
     margin: 2px 12px;
 }
+
+/*Extending Bootstrap classes*/
+.w-60 {
+    width: 60% !important;
+}
+
+.w-65 {
+    width: 65% !important;
+}
+
+.w-70 {
+    width: 70% !important;
+}

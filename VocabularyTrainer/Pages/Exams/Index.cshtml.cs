@@ -21,10 +21,14 @@ namespace VocabularyTrainer.Pages.Exams
         [BindProperty]
         public Deck Deck { get; set; }
 
+        [BindProperty]
+        public LanguageTest LanguageTest { get; set; }
+
         public IActionResult OnGet()
         {
             ViewData["Language"] = new SelectList(_context.Language.Where(l => l.Decks.Any()), "LanguageId", "LanguageName");
             ViewData["Deck"] = new SelectList(_context.Deck.Where(d => 1 == 0), "DeckId", "DeckName"); // Empty collection
+            ViewData["TestType"] = new SelectList(_context.LanguageTest.Where(lt => 1 == 0), "LanguageTestId", "TestTypeName"); // Empty collection
 
             return Page();
         }

@@ -18,28 +18,32 @@ namespace VocabularyTrainer.Api
             _context = context;
         }
 
-        // GET api/exam/GetVocabularyExam/1
-        [HttpGet("{deckIds}")]
-        public IEnumerable<ExamWord> GetVocabularyExam(string deckIds)
+        // GET api/exam/GetExam/1
+        [HttpGet("{deckId}")]
+        public IEnumerable<ExamWord> GetExam(string deckId)
         {
-            var decks = deckIds.Split('|');
+            if (!int.TryParse(deckId, out int result))
+            {
+                return null;
+            }
 
             // Use a random value for the ID in order to return the list in random order
             var random = new Random();
 
             var words = _context.Word
-                .Where(w => decks.Contains(w.DeckId.ToString()))
+                .Where(w => w.DeckId == int.Parse(deckId))
                 .Select(w => new ExamWord
                 {
                     ExamWordId = random.Next(ushort.MinValue, ushort.MaxValue), // 0 to 65,535
                     Singular = w.Singular,
                     Plural = w.Plural,
-                    Article = w.Article.ArticleName,
+                    Article = w.Article.ArticleName ?? "",
                     Meaning = w.Meaning,
                     CorrectAnswer = false
-                });
+                })
+                .ToList();
 
-            return words.OrderBy(w => w.ExamWordId).ToList();
+            return words.OrderBy(w => w.ExamWordId);
         }
     }
 }

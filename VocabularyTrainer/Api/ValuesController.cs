@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using VocabularyTrainer.Data;
 
@@ -28,7 +29,10 @@ namespace VocabularyTrainer.Api
                 return null;
             }
 
-            var articles = _context.Article.Where(a => a.LanguageId == language.LanguageId).OrderBy(a => a.ArticleId);
+            var articles = _context.Article
+                .Where(a => a.LanguageId == language.LanguageId)
+                .OrderBy(a => a.ArticleId);
+
             return new SelectList(articles, "ArticleId", "ArticleName");
         }
 
@@ -36,8 +40,23 @@ namespace VocabularyTrainer.Api
         [HttpGet("{languageId}")]
         public SelectList GetDecksByLanguageId(int languageId)
         {
-            var decks = _context.Deck.Where(d => d.LanguageId == languageId).OrderBy(d => d.DeckName);
+            var decks = _context.Deck
+                .Where(d => d.LanguageId == languageId)
+                .OrderBy(d => d.DeckName);
+
             return new SelectList(decks, "DeckId", "DeckName");
+        }
+
+        // GET api/values/GetTestTypesByLanguageId/1
+        [HttpGet("{languageId}")]
+        public SelectList GetTestTypesByLanguageId(int languageId)
+        {
+            var testTypes = _context.LanguageTest
+                .Include(lt => lt.TestType)
+                .Where(lt => lt.LanguageId == languageId)
+                .OrderBy(lt => lt.TestTypeId);
+
+            return new SelectList(testTypes, "LanguageTestId", "TestType.TestTypeName");
         }
 
     }

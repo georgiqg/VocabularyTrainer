@@ -1,31 +1,86 @@
 ﻿@page
 @model VocabularyTrainer.Pages.Exams.IndexModel
 @{
+    ViewData["Title"] = "Exams";
 }
 
 <h1>Exams</h1>
 
-<div class="row">
-    <div class="col-md-4">
-        <form action="/" method="post">
-            <div class="form-group">
-                <label asp-for="Language.LanguageId" class="control-label">Language</label>
-                <select asp-for="Language.LanguageId" class="form-control" asp-items="ViewBag.Language">
+<div class="card w-65 mb-3">
+    <div class="col-sm-12 card-body">
+        <form id="exam-settings-form" action="/" method="post">
+            <div class="form-group row">
+                <label asp-for="Language.LanguageId" class="control-label col-sm-2 col-form-label">Language</label>
+                <select asp-for="Language.LanguageId" class="form-control col-sm-6" asp-items="ViewBag.Language">
                     <option value="">-Select-</option>
                 </select>
-                <span asp-validation-for="Language.LanguageId" class="text-danger"></span>
+                <span id="warn-language" class="text-danger" style="display:none">The Language is required</span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Deck.DeckId" class="control-label">Deck</label>
-                <select asp-for="Deck.DeckId" class="form-control" asp-items="ViewBag.Deck">
+            <div class="form-group row">
+                <label asp-for="LanguageTest.LanguageTestId" class="control-label col-sm-2 col-form-label">Test Type</label>
+                <select asp-for="LanguageTest.LanguageTestId" class="form-control col-sm-6" asp-items="ViewBag.TestType">
                     <option value=""></option>
                 </select>
-                <span asp-validation-for="Deck.DeckId" class="text-danger"></span>
+                <span id="warn-languagetest" class="text-danger" style="display: none">The Test Type is required</span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group row">
+                <label asp-for="Deck.DeckId" class="control-label col-sm-2 col-form-label">Deck</label>
+                <select asp-for="Deck.DeckId" class="form-control col-sm-6" asp-items="ViewBag.Deck">
+                    <option value=""></option>
+                </select>
+                <span id="warn-deck" class="text-danger" style="display: none">The Deck is required</span>
+            </div>
+
+            <div class="form-group text-center">
+                <input id="start-exam" type="button" value="Start exam" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card w-65 mb-3" id="exam-div" @*style="display: none"*@>
+    <div class="col-sm-12 card-body">
+        <form id="exam-form" class="form-group">
+            <h4 id="exam-type" class="text-center mb-4">Exam type</h4>
+
+            <div id="vocabulary-exam">
+                <div class="form-group row">
+                    <label class="control-label col-sm-2 col-form-label">Meaning</label>
+                    <div class="col-sm-6">
+                        <input id="vocabulary-exam-meaning" class="form-control" type="text" placeholder="Word meaning" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-2 col-form-label">Answer</label>
+                    <div class="col-sm-6">
+                        <input id="vocabulary-exam-answer" class="form-control" autocomplete="off" />
+                    </div>
+                    <input id="submit-answer" type="button" value="Submit" class="btn btn-primary" />
+                </div>
+            </div>
+
+            <div class="form-group row mb-4">
+                <div class="col-sm-4">
+                    <input id="right-answers" class="form-control text-success" type="text" value="0 right answer(s)" readonly>
+                </div>
+
+                <div class="col-sm-4">
+                    <input id="wrong-answers" class="form-control text-danger" type="text" value="0 wrong answer(s)" readonly>
+                </div>
+
+                <div class="col-sm-4">
+                    <input id="total-words" class="form-control text-info" type="text" value="0 total word(s)" readonly>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2 col-form-label">Previous</label>
+                <div class="col-sm-6">
+                    <input id="previous-word" class="form-control" autocomplete="off" placeholder="Previous word" readonly />
+                </div>
             </div>
         </form>
     </div>
@@ -34,3 +89,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script src="~/js/exams.js"></script>
