@@ -6,7 +6,7 @@
 
 <h1>Exams</h1>
 
-<div class="card w-65 mb-3">
+<div class="card mb-3">
     <div class="col-sm-12 card-body">
         <form id="exam-settings-form" action="/" method="post">
             <div class="form-group row">
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="card w-65 mb-3" id="exam-div" @*style="display: none"*@>
+<div class="card mb-3" id="exam-div" @*style="display: none"*@>
     <div class="col-sm-12 card-body">
         <form id="exam-form" class="form-group">
             <h4 id="exam-type" class="text-center mb-4">Exam type</h4>
@@ -58,6 +58,9 @@
                     <div class="col-sm-6">
                         <input id="vocabulary-exam-answer" class="form-control" autocomplete="off" />
                     </div>
+                </div>
+
+                <div class="form-group text-center">
                     <input id="submit-answer" type="button" value="Submit" class="btn btn-primary" />
                 </div>
             </div>
@@ -80,6 +83,13 @@
                 <label class="control-label col-sm-2 col-form-label">Previous</label>
                 <div class="col-sm-6">
                     <input id="previous-word" class="form-control" autocomplete="off" placeholder="Previous word" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2 col-form-label">Result</label>
+                <div class="col-sm-6">
+                    <input id="exam-result" class="form-control font-weight-bold" autocomplete="off" placeholder="Exam result" readonly />
                 </div>
             </div>
         </form>
