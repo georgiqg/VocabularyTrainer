@@ -19,8 +19,8 @@ namespace VocabularyTrainer.Api
         }
 
         // GET api/exam/GetExam/1
-        [HttpGet("{deckId}")]
-        public IEnumerable<ExamWord> GetExam(string deckId)
+        [HttpGet("{deckId}/{onlyNouns}")]
+        public IEnumerable<ExamWord> GetExam(string deckId, bool onlyNouns)
         {
             if (!int.TryParse(deckId, out int result))
             {
@@ -31,7 +31,7 @@ namespace VocabularyTrainer.Api
             var random = new Random();
 
             var words = _context.Word
-                .Where(w => w.DeckId == int.Parse(deckId))
+                .Where(w => w.DeckId == int.Parse(deckId) && (w.Article != null || !onlyNouns))
                 .Select(w => new ExamWord
                 {
                     ExamWordId = random.Next(ushort.MinValue, ushort.MaxValue), // 0 to 65,535

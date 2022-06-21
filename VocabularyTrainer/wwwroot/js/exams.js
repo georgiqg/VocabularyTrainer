@@ -10,6 +10,9 @@
     $(document).on("click", "#start-exam", runValidation);
     $(document).on("click", "#submit-answer", showNextWord);
 
+    // Disable exam form
+    setExamFormDisabled(true);
+
     // Trigger button click on press enter
     $('#exam-form').keypress(function (e) {
         if ($("#vocabulary-exam-answer").val() != "" && e.keyCode == 13) {
@@ -21,12 +24,18 @@
         autoValidation = true;
 
         if (isValidForm()) {
+            currentIndex = 0;
+            rightAnswers = 0;
+            wrongAnswers = 0;
+
+            testTypeName = $("#LanguageTest_LanguageTestId option:selected").text();
             var deckId = $("#Deck_DeckId").val();
+            var nounsOnly = testTypeName.toLowerCase() != "vocabulary";
 
             // Disable the whole form
             setExamSettingsFormDisabled(true);
 
-            callExamApi(deckId);
+            callExamApi(deckId, nounsOnly);
         }
     }
 
@@ -86,9 +95,9 @@
         return isValud;
     }
 
-    function callExamApi(deckId) {
+    function callExamApi(deckId, nounsOnly) {
         $.ajax({
-            url: "../api/exam/GetExam/" + deckId,
+            url: "../api/exam/GetExam/" + deckId + "/" + nounsOnly,
             type: "get", //send it through get method
             success: function (response) {
                 if (response != null && !jQuery.isEmptyObject(response)) {
@@ -107,10 +116,12 @@
     }
 
     function startExam() {
-        testTypeName = $("#LanguageTest_LanguageTestId option:selected").text();
         $("#exam-type").text(testTypeName);
         $("#total-words").val(vocabularyList.length.toString() + " total word(s)");
-        setRightAndWrongAnswers();
+        $("#previous-word").val("");
+        $("#exam-result").val("");
+        $("#right-answers").val("0 right answer(s)");
+        $("#wrong-answers").val("0 wrong answer(s)");
 
         setExamFormVisible(true);
         setExamFormDisabled(false);
@@ -129,9 +140,6 @@
             setExamFormDisabled(true);
             setExamSettingsFormDisabled(false);
 
-            // TODO send result to API and store result in DB
-
-
             // show result (percentage) on screen
             var examResult = (rightAnswers / vocabularyList.length) * 100;
             $("#exam-result").val(examResult.toFixed(2) + "%");
@@ -139,7 +147,12 @@
             return;
         }
 
-        $("#vocabulary-exam-meaning").val(vocabularyList[currentIndex].meaning);
+        if (testTypeName.toLowerCase() == "vocabulary") {
+            $("#vocabulary-exam-meaning").val(vocabularyList[currentIndex].meaning);
+        } else {
+            $("#vocabulary-exam-meaning").val(vocabularyList[currentIndex].singular);
+        }
+        
         $("#vocabulary-exam-answer").val("");
 
         currentIndex++;
@@ -170,16 +183,15 @@
 
         if (answer == rightAnswer) {
             rightAnswers++;
+            $("#right-answers").val(rightAnswers.toString() + " right answer(s)");
+            $("#right-answers").fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250);
         } else {
             wrongAnswers++;
+            $("#wrong-answers").val(wrongAnswers.toString() + " wrong answer(s)");
+            $("#wrong-answers").fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250);
         }
 
+        $("#total-words").val(vocabularyList.length.toString() + " total word(s), " + (vocabularyList.length - currentIndex) + " remaining");
         $("#previous-word").val(previousWord.trim());
-        setRightAndWrongAnswers();
-    }
-
-    function setRightAndWrongAnswers() {
-        $("#right-answers").val(rightAnswers.toString() + " right answer(s)");
-        $("#wrong-answers").val(wrongAnswers.toString() + " wrong answer(s)");
     }
 });
